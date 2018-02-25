@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}Litio{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- Bootstrap core CSS-->
+        <link href="{{ asset('plantilla/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="{{ asset('plantilla/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+        <!-- Page level plugin CSS-->
+        <link href="{{ asset('plantilla/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="{{ asset('plantilla/css/sb-admin.css') }}" rel="stylesheet">
+
+
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        {% include 'menu.html.twig' %}
+        {% include 'barraNavegacion.html.twig' %}
+    </nav>
+
+    <div class="content-wrapper">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('plantilla/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('plantilla/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="{{ asset('plantilla/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('plantilla/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('plantilla/js/sb-admin.min.js') }}"></script>
+
+    <!-- Custom scripts for this page-->
+    <script src="{{ asset('plantilla/js/sb-admin-datatables.min.js') }}"></script>
+    <script src="{{ asset('plantilla/js/sb-admin-charts.min.js') }}"></script>
+{% endblock %}
+</body>
 </html>
