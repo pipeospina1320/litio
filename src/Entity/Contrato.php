@@ -192,6 +192,12 @@ class Contrato
     private $estadoLiquidado;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Empleado", inversedBy="contratosEmpleadoRel")
+     * @ORM\JoinColumn(name="codigo_empleado_fk", referencedColumnName="codigo_empleado_pk")
+     */
+    private $empleadoRel;
+
+    /**
      * @return mixed
      */
     public function getCodigoContratoPk()
@@ -767,6 +773,21 @@ class Contrato
         $this->estadoLiquidado = $estadoLiquidado;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoRel()
+    {
+        return $this->empleadoRel;
+    }
+
+    /**
+     * @param mixed $empleadoRel
+     */
+    public function setEmpleadoRel($empleadoRel): void
+    {
+        $this->empleadoRel = $empleadoRel;
+    }
 
 }
 

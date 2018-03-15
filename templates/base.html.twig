@@ -7,55 +7,136 @@
 
     <title>{% block title %}Litio{% endblock %}</title>
     {% block stylesheets %}
-        <!-- Bootstrap core CSS-->
-        <link href="{{ asset('plantilla/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-        <!-- Custom fonts for this template-->
-        <link href="{{ asset('plantilla/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-        <!-- Page level plugin CSS-->
-        <link href="{{ asset('plantilla/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
-        <!-- Custom styles for this template-->
-        <link href="{{ asset('plantilla/css/sb-admin.css') }}" rel="stylesheet">
 
-
+        <!-- Bootstrap -->
+        <link href="{{ asset('plantilla/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="{{ asset('plantilla/docs/fonts/css/font-awesome.min.css') }}" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{ asset('plantilla/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="{{ asset('plantilla/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+        <!-- bootstrap-progressbar -->
+        <link href="{{ asset('plantilla/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.css') }}"
+              rel="stylesheet">
+        <!-- bootstrap-datetimepicker -->
+        <link href="{{ asset('plantilla/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}"
+              rel="stylesheet">
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{ asset('plantilla/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+        <!-- JQVMap -->
+        {#<link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>#}
+        <!-- Custom Theme Style -->
+        <link href="{{ asset('plantilla/build/css/custom.min.css') }}" rel="stylesheet">
+        <!-- Datatables -->
+        <link href="{{ asset('plantilla/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"
+              rel="stylesheet">
+        <link href="{{ asset('plantilla/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
+              rel="stylesheet">
+        <link href="{{ asset('plantilla/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"
+              rel="stylesheet">
+        <link href="{{ asset('plantilla/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}"
+              rel="stylesheet">
     {% endblock %}
 </head>
-<body>
+
+<body class="nav-md">
 {% block body %}
+    <div class="container body">
+        <div class="main_container">
+            {% set route = app.request.get('_route') %}
+            {% set parametros = app.request.attributes.get('_route_params') %}
+            {% include 'menu.html.twig' %}
+            {% include 'barraNavegacion.html.twig' %}
+            <!-- page content -->
+            <div class="right_col" role="main">
+                {% block content %}
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        {% include 'menu.html.twig' %}
-        {% include 'barraNavegacion.html.twig' %}
-    </nav>
+                {% endblock %}
+            </div>
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
 
-    <div class="content-wrapper">
-
-        {% block content %}
-
-        {% endblock %}
-
+        </div>
     </div>
-{% endblock %}
-
+    <!-- /page content -->
 {% block javascripts %}
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('plantilla/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- jQuery -->
+    <script src="{{ asset('plantilla/vendors/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('plantilla/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('plantilla/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset('plantilla/vendors/nprogress/nprogress.js') }}"></script>
+    <!-- Chart.js -->
+    <script src="{{ asset('plantilla/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+    <!-- gauge.js -->
+    <script src="{{ asset('plantilla/vendors/gauge.js/dist/gauge.min.js') }}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{{ asset('plantilla/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    <!-- iCheck -->
+    <script src="{{ asset('plantilla/vendors/iCheck/icheck.min.js') }}"></script>
+    <!-- Skycons -->
+    <script src="{{ asset('plantilla/vendors/skycons/skycons.js') }}"></script>
+    <!-- Flot -->
+    {#<script src="{{ asset('plantilla/vendors/Flot/jquery.flot.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/Flot/jquery.flot.pie.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/Flot/jquery.flot.time.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/Flot/jquery.flot.stack.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/Flot/jquery.flot.resize.js') }}"></script>#}
+    {#<!-- Flot plugins -->#}
+    {#<script src="{{ asset('plantilla/vendors/flot.orderbars/js/jquery.flot.orderBars.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/flot.curvedlines/curvedLines.js') }}"></script>#}
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('plantilla/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- JQVMap -->
+    {#<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>#}
+    {#<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>#}
+    {#<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>#}
 
-    <!-- Page level plugin JavaScript-->
-    <script src="{{ asset('plantilla/vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendor/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('plantilla/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset('plantilla/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="{{ asset('plantilla/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <!-- DateJS -->
+    <script src="{{ asset('plantilla/vendors/DateJS/build/date.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('plantilla/build/js/custom.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('plantilla/js/sb-admin.min.js') }}"></script>
+    <!-- -->
 
-    <!-- Custom scripts for this page-->
-    <script src="{{ asset('plantilla/js/sb-admin-datatables.min.js') }}"></script>
-    <script src="{{ asset('plantilla/js/sb-admin-charts.min.js') }}"></script>
+    <!-- Datatables -->
+    <script src="{{ asset('plantilla/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+    <script src="{{ asset('plantilla/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/jszip/dist/jszip.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/pdfmake/build/pdfmake.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/pdfmake/build/vfs_fonts.js') }}"></script>#}
+
+    <script>
+        $('#myDatepicker').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    </script>
+{% endblock %}
+
 {% endblock %}
 </body>
 </html>

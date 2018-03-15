@@ -11,10 +11,47 @@ class RhTipo
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="codigo_rh_tipo_pk" ,type="integer")
      */
-    private $id;
+    private $codigoRhTipoPk;
 
-    // add your own fields
+    /**
+     * @ORM\Column(name="nombre" , type="string")
+     */
+    private $nombre;
+
+    /**
+     * @return mixed
+     */
+    public function getCodigoRhTipoPk()
+    {
+        return $this->codigoRhTipoPk;
+    }
+
+    /**
+     * @param mixed $codigoRhTipoPk
+     */
+    public function setCodigoRhTipoPk($codigoRhTipoPk): void
+    {
+        $this->codigoRhTipoPk = $codigoRhTipoPk;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre): void
+    {
+        $this->nombre = $nombre;
+    }
+
+
+
 }

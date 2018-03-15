@@ -15,5 +15,63 @@ class EmpleadoTipo
      */
     private $codigoEmpleadoTipoPk;
 
-    // add your own fields
+    /**
+     * @ORM\Column(name="nombre" , type="string")
+     */
+    private $nombre;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="empleadoTipoRel")
+     */
+    private $empleadoRel;
+
+    /**
+     * @return mixed
+     */
+    public function getCodigoEmpleadoTipoPk()
+    {
+        return $this->codigoEmpleadoTipoPk;
+    }
+
+    /**
+     * @param mixed $codigoEmpleadoTipoPk
+     */
+    public function setCodigoEmpleadoTipoPk($codigoEmpleadoTipoPk): void
+    {
+        $this->codigoEmpleadoTipoPk = $codigoEmpleadoTipoPk;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre): void
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoCodigoTipoRel()
+    {
+        return $this->empleadoCodigoTipoRel;
+    }
+
+    /**
+     * @param mixed $empleadoCodigoTipoRel
+     */
+    public function setEmpleadoCodigoTipoRel($empleadoCodigoTipoRel): void
+    {
+        $this->empleadoCodigoTipoRel = $empleadoCodigoTipoRel;
+    }
+
+
 }
