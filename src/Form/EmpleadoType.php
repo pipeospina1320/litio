@@ -2,9 +2,16 @@
 
 namespace App\Form;
 
+use App\Entity\Banco;
+use App\Entity\Ciudad;
+use App\Entity\CuentaBancoTipo;
 use App\Entity\Empleado;
+use App\Entity\EmpleadoNumerosContacto;
 use App\Entity\EmpleadoTipo;
+use App\Entity\IdentidadSexo;
 use App\Entity\IdentificacionTipo;
+use App\Entity\LibretaTipo;
+use App\Entity\RhTipo;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,14 +30,7 @@ class EmpleadoType extends AbstractType
                 'attr' => array('class' => 'form-control',
                     'place_holder' => 'numero identificacion')
             ))
-//            ->add('identificacionTipoRel', EntityType::class, array(
-//                'attr' => array('class' => 'form-control'),
-//                'class' => IdentificacionTipo::class,
-//                'query_builder' => function (EntityRepository $er) {
-//                    return $er->createQueryBuilder('i')
-//                        ->orderBy('i.codigoIdentificacionTipoPk', 'ASC');
-//                },
-//                'choice_label' => 'nombre'))
+
 
 //            ->add('identificacionTipoRel',EntityType::class,array(
 //                'attr' => array('class' =>'form-control'),
@@ -41,25 +41,18 @@ class EmpleadoType extends AbstractType
 //                },
 //                'choice_label' => 'nombre'
 //            ))
+
             ->add('identificacionTipoRel', EntityType::class, array(
                 'class' => IdentificacionTipo::class,
                 'attr' => array('class' => 'form-control'),
-                'choice_label' => 'nombre',))
+                'choice_label' => 'nombre'
+                ))
 
             ->add('empleadoTipoRel', EntityType::class, array(
                 'class' => EmpleadoTipo::class,
                 'attr' => array('class' => 'form-control'),
-                'choice_label' => 'nombre',))
-
-//            ->add('empleadoTipoRel',EntityType::class, array(
-//                'attr' => array('class' =>'form-control'),
-//                'class' => EmpleadoTipo::class,
-//                'query_builder' => function(EntityRepository $er){
-//                    return $er->createQueryBuilder('e')
-//                        ->orderBy('e.nombre' , 'ASC');
-//                },
-//                'choice_label' => 'nombre'
-//            ))
+                'choice_label' => 'nombre'
+                ))
 
             ->add('nombre1', TextType::class, array(
                 'attr' => array('class' => 'form-control')
@@ -82,7 +75,80 @@ class EmpleadoType extends AbstractType
                 'attr' => array( 'class' => 'form-control', 'placeholder' => "DD/MM/YYYY")
             ))
 
+            ->add('fechaNacimiento', DateType::class, array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'html5' => false,
+                'attr' => array('class' => 'form-control' , 'placeholder' => "DD/MM/YYYY")
+            ))
 
+            ->add('ciudadExpedicionRel', EntityType::class ,array(
+                'class' => Ciudad::class,
+                'attr' => array('class' => 'form-control'),
+                'choice_label' => 'nombre'
+            ))
+
+            ->add('ciudadNacimientoRel' , EntityType::class , array(
+                'class' => Ciudad::class,
+                'attr' => array('class' => 'form-control'),
+                'choice_label' => 'nombre'
+            ))
+
+            ->add('rhTipoRel', EntityType::class , array(
+                'class' => RhTipo::class,
+                'attr' => array('class' => 'form-control'),
+                'choice_label'=> 'nombre'
+            ))
+
+            ->add('libretaTipoRel' , EntityType::class , array(
+                'class' => LibretaTipo::class,
+                'attr' => array('class' => 'form-control'),
+                'choice_label' => 'nombre'
+            ))
+
+            ->add('numLibreta' , TextType::class, array(
+                'attr' => array('class' => 'form-control')
+            ))
+
+            ->add('identidadSexoRel' , EntityType::class ,array(
+                'class' => IdentidadSexo::class,
+                'attr' => array('class' => 'form-control'),
+                'choice_label' => 'nombre'
+            ))
+
+//            ->add('$numeroContactoRel',EntityType::class,array(
+//                'attr' => array('class' =>'form-control'),
+//                'class' => EmpleadoNumerosContacto::class,
+//                'query_builder' => function(EntityRepository $er){
+//                    return $er->createQueryBuilder('i')
+//                        ->orderBy('i.codigoIdentificacionTipoPk' , 'ASC');
+//                },
+//                'choice_label' => 'nombre'
+//            ))
+
+            ->add('direccion' , TextType::class, array(
+                'attr' => array('class' => 'form-control')
+            ))
+
+            ->add('correo', TextType::class , array(
+                'attr' => array('class' => 'form-control')
+            ))
+
+            ->add('cuentaBancoTipoRel' ,EntityType::class ,array(
+                'class' => CuentaBancoTipo::class,
+                'attr' => array('class' => 'form-control'),
+                'choice_label' => 'nombre'
+            ))
+
+            ->add('numCuentaBanco' , TextType::class , array(
+                'attr' => array('class' => 'form-control')
+            ))
+
+            ->add('bancoRel' , EntityType::class, array(
+                'class' => Banco::class,
+                'attr' => array('class' => 'form-control'),
+                'choice_label' => 'nombre'
+            ))
 
             ->add('Guardar', SubmitType::class, array(
                 'label' => 'Gurdar',

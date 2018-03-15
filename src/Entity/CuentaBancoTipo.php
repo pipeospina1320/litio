@@ -11,10 +11,45 @@ class CuentaBancoTipo
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="codigo_cuenta_banco_tipo_pk", type="integer")
      */
-    private $id;
+    private $codigoCuentaBancoTipoPk;
 
-    // add your own fields
+    /**
+     * @ORM\Column(name="nombre", type="string")
+     */
+    private $nombre;
+
+    /**
+     * @return mixed
+     */
+    public function getCodigoCuentaBancoTipoPk()
+    {
+        return $this->codigoCuentaBancoTipoPk;
+    }
+
+    /**
+     * @param mixed $codigoCuentaBancoTipoPk
+     */
+    public function setCodigoCuentaBancoTipoPk($codigoCuentaBancoTipoPk): void
+    {
+        $this->codigoCuentaBancoTipoPk = $codigoCuentaBancoTipoPk;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre): void
+    {
+        $this->nombre = $nombre;
+    }
+
 }

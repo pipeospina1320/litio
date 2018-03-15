@@ -5,15 +5,15 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CiudadRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\IdentidadSexoRepository")
  */
-class Ciudad
+class IdentidadSexo
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(name="codigo_ciudad_pk", type="integer")
+     * @ORM\Id()
+     * @ORM\Column(name="codigo_identidad_sexo_pk", type="integer")
      */
-    private $codigoCiudadPk;
+    private $codigoIdentidadSexoPk;
 
    /**
     * @ORM\Column(name="nombre", type="string")
@@ -23,17 +23,17 @@ class Ciudad
     /**
      * @return mixed
      */
-    public function getCodigoCiudadPk()
+    public function getCodigoIdentidadSexoPk()
     {
-        return $this->codigoCiudadPk;
+        return $this->codigoIdentidadSexoPk;
     }
 
     /**
-     * @param mixed $codigoCiudadPk
+     * @param mixed $codigoIdentidadSexoPk
      */
-    public function setCodigoCiudadPk($codigoCiudadPk): void
+    public function setCodigoIdentidadSexoPk($codigoIdentidadSexoPk): void
     {
-        $this->codigoCiudadPk = $codigoCiudadPk;
+        $this->codigoIdentidadSexoPk = $codigoIdentidadSexoPk;
     }
 
     /**

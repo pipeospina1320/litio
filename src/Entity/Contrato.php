@@ -192,10 +192,10 @@ class Contrato
     private $estadoLiquidado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Empleado", inversedBy="contratosEmpleadoRel")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Empleado", inversedBy="contratosRel")
      * @ORM\JoinColumn(name="codigo_empleado_fk", referencedColumnName="codigo_empleado_pk")
      */
-    private $empleadoRel;
+    private $empleadoContratoRel;
 
     /**
      * @return mixed

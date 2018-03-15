@@ -23,7 +23,7 @@ class EmpleadoTipo
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="empleadoTipoRel")
      */
-    private $empleadoRel;
+    private $empleadoEmpleadoTipoRel;
 
     /**
      * @return mixed
@@ -60,18 +60,17 @@ class EmpleadoTipo
     /**
      * @return mixed
      */
-    public function getEmpleadoCodigoTipoRel()
+    public function getEmpleadoEmpleadoTipoRel()
     {
-        return $this->empleadoCodigoTipoRel;
+        return $this->empleadoEmpleadoTipoRel;
     }
 
     /**
-     * @param mixed $empleadoCodigoTipoRel
+     * @param mixed $empleadoEmpleadoTipoRel
      */
-    public function setEmpleadoCodigoTipoRel($empleadoCodigoTipoRel): void
+    public function setEmpleadoEmpleadoTipoRel($empleadoEmpleadoTipoRel): void
     {
-        $this->empleadoCodigoTipoRel = $empleadoCodigoTipoRel;
+        $this->empleadoEmpleadoTipoRel = $empleadoEmpleadoTipoRel;
     }
-
 
 }

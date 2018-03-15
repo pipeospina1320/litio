@@ -87,9 +87,9 @@ class Empleado
     private $codigoRhFk;
 
     /**
-     * @ORM\Column(name="codigo_tipo_libreta", type="integer" , nullable=true)
+     * @ORM\Column(name="codigo_libreta_tipo_fk", type="integer" , nullable=true)
      */
-    private $codigoTipoLibretaFk;
+    private $codigoLibretaTipoFk;
 
     /**
      * @ORM\Column(name="num_libreta" , type="string", nullable=true)
@@ -97,19 +97,9 @@ class Empleado
     private $numLibreta;
 
     /**
-     * @ORM\Column(name="codigo_sexo_fk", type="integer" , nullable=true)
+     * @ORM\Column(name="codigo_idenditad_sexo_fk", type="integer" , nullable=true)
      */
-    private $codigoSexoFk;
-
-    /**
-     * @ORM\Column(name="telefono" , type="string" , nullable=true)
-     */
-    private $telefono;
-
-    /**
-     * @ORM\Column(name="celular", type="string" , nullable=true)
-     */
-    private $celular;
+    private $codigoIdenditadSexoFk;
 
     /**
      * @ORM\Column(name="direccion" , type="string" , nullable=true)
@@ -122,9 +112,9 @@ class Empleado
     private $correo;
 
     /**
-     * @ORM\Column(name="tipo_cuenta_banco_fk" , type="string" , nullable=true)
+     * @ORM\Column(name="codigo_cuenta_banco_tipo_fk" , type="integer" , nullable=true)
      */
-    private $tipoCuentaBancoFk;
+    private $codigoCuentaBancoTipoFk;
 
     /**
      * @ORM\Column(name="num_cuenta_banco" , type="string" , nullable=true)
@@ -147,20 +137,70 @@ class Empleado
     private $codigoUltimoContratoFk;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Contrato" , mappedBy="empleadoRel")
+     * @ORM\OneToMany(targetEntity="App\Entity\Contrato" , mappedBy="empleadoContratoRel")
      */
-    protected $contratosEmpleadoRel;
+    protected $contratosRel;
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EmpleadoTipo", inversedBy="empleadoRel")
+     * @ORM\OneToMany(targetEntity="App\Entity\EmpleadoNumerosContacto" , mappedBy="empleadoNumeroContactoRel")
+     */
+    protected $numeroContactoRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EmpleadoTipo", inversedBy="empleadoEmpleadoTipoRel")
      * @ORM\JoinColumn(name="codigo_empleado_tipo_fk", referencedColumnName="codigo_empleado_tipo_pk")
      */
     private $empleadoTipoRel;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\IdentificacionTipo", inversedBy="empleadoRel")
+     * @ORM\ManyToOne(targetEntity="App\Entity\IdentificacionTipo", inversedBy="empleadoIdentificacionRel")
      * @ORM\JoinColumn(name="codigo_identificacion_tipo_fk", referencedColumnName="codigo_identificacion_tipo_pk")
      */
     private $identificacionTipoRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ciudad", inversedBy="empleadoCiudadNacimientoRel")
+     * @ORM\JoinColumn(name="codigo_ciudad_nacimiento_fk" , referencedColumnName="codigo_ciudad_pk")
+     */
+    private $ciudadNacimientoRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ciudad", inversedBy="empleadoCiudadExpedicionRel")
+     * @ORM\JoinColumn(name="codigo_ciudad_expedicion_fk" , referencedColumnName="codigo_ciudad_pk")
+     */
+    private $ciudadExpedicionRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\RhTipo" , inversedBy="empleadoRhTipoRel")
+     * @ORM\JoinColumn(name="codigo_rh_fk" , referencedColumnName="codigo_rh_tipo_pk")
+     */
+    private $rhTipoRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\LibretaTipo", inversedBy="empleadoLibretaTipoRel")
+     * @ORM\JoinColumn(name="codigo_libreta_tipo_fk" , referencedColumnName="codigo_libreta_tipo_pk")
+     */
+    private $libretaTipoRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\IdentidadSexo", inversedBy="empleadoIdentidadSexoRel")
+     * @ORM\JoinColumn(name="codigo_idenditad_sexo_fk" , referencedColumnName="codigo_identidad_sexo_pk")
+     */
+    private $identidadSexoRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CuentaBancoTipo" , inversedBy="empleadoCuentaBancoTipoRel")
+     * @ORM\JoinColumn(name="codigo_cuenta_banco_tipo_fk" , referencedColumnName="codigo_cuenta_banco_tipo_pk")
+     */
+    private $cuentaBancoTipoRel;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Banco" , inversedBy="empleadoBancoRel")
+     * @ORM\JoinColumn(name="codigo_banco_fk" , referencedColumnName="codigo_banco_pk")
+     */
+    private $bancoRel;
+
+
 
 
     public function __construct() {
@@ -411,17 +451,17 @@ class Empleado
     /**
      * @return mixed
      */
-    public function getCodigoTipoLibretaFk()
+    public function getCodigoLibretaTipoFk()
     {
-        return $this->codigoTipoLibretaFk;
+        return $this->codigoLibretaTipoFk;
     }
 
     /**
-     * @param mixed $codigoTipoLibretaFk
+     * @param mixed $codigoLibretaTipoFk
      */
-    public function setCodigoTipoLibretaFk($codigoTipoLibretaFk): void
+    public function setCodigoLibretaTipoFk($codigoLibretaTipoFk): void
     {
-        $this->codigoTipoLibretaFk = $codigoTipoLibretaFk;
+        $this->codigoLibretaTipoFk = $codigoLibretaTipoFk;
     }
 
     /**
@@ -443,49 +483,17 @@ class Empleado
     /**
      * @return mixed
      */
-    public function getCodigoSexoFk()
+    public function getCodigoIdenditadSexoFk()
     {
-        return $this->codigoSexoFk;
+        return $this->codigoIdenditadSexoFk;
     }
 
     /**
-     * @param mixed $codigoSexoFk
+     * @param mixed $codigoIdenditadSexoFk
      */
-    public function setCodigoSexoFk($codigoSexoFk): void
+    public function setCodigoIdenditadSexoFk($codigoIdenditadSexoFk): void
     {
-        $this->codigoSexoFk = $codigoSexoFk;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-    /**
-     * @param mixed $telefono
-     */
-    public function setTelefono($telefono): void
-    {
-        $this->telefono = $telefono;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCelular()
-    {
-        return $this->celular;
-    }
-
-    /**
-     * @param mixed $celular
-     */
-    public function setCelular($celular): void
-    {
-        $this->celular = $celular;
+        $this->codigoIdenditadSexoFk = $codigoIdenditadSexoFk;
     }
 
     /**
@@ -523,17 +531,17 @@ class Empleado
     /**
      * @return mixed
      */
-    public function getTipoCuentaBancoFk()
+    public function getCodigoCuentaBancoTipoFk()
     {
-        return $this->tipoCuentaBancoFk;
+        return $this->codigoCuentaBancoTipoFk;
     }
 
     /**
-     * @param mixed $tipoCuentaBancoFk
+     * @param mixed $codigoCuentaBancoTipoFk
      */
-    public function setTipoCuentaBancoFk($tipoCuentaBancoFk): void
+    public function setCodigoCuentaBancoTipoFk($codigoCuentaBancoTipoFk): void
     {
-        $this->tipoCuentaBancoFk = $tipoCuentaBancoFk;
+        $this->codigoCuentaBancoTipoFk = $codigoCuentaBancoTipoFk;
     }
 
     /**
@@ -603,17 +611,33 @@ class Empleado
     /**
      * @return mixed
      */
-    public function getContratosEmpleadoRel()
+    public function getContratosRel()
     {
-        return $this->contratosEmpleadoRel;
+        return $this->contratosRel;
     }
 
     /**
-     * @param mixed $contratosEmpleadoRel
+     * @param mixed $contratosRel
      */
-    public function setContratosEmpleadoRel($contratosEmpleadoRel): void
+    public function setContratosRel($contratosRel): void
     {
-        $this->contratosEmpleadoRel = $contratosEmpleadoRel;
+        $this->contratosRel = $contratosRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumeroContactoRel()
+    {
+        return $this->numeroContactoRel;
+    }
+
+    /**
+     * @param mixed $numeroContactoRel
+     */
+    public function setNumeroContactoRel($numeroContactoRel): void
+    {
+        $this->numeroContactoRel = $numeroContactoRel;
     }
 
     /**
@@ -648,8 +672,117 @@ class Empleado
         $this->identificacionTipoRel = $identificacionTipoRel;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCiudadNacimientoRel()
+    {
+        return $this->ciudadNacimientoRel;
+    }
 
+    /**
+     * @param mixed $ciudadNacimientoRel
+     */
+    public function setCiudadNacimientoRel($ciudadNacimientoRel): void
+    {
+        $this->ciudadNacimientoRel = $ciudadNacimientoRel;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getCiudadExpedicionRel()
+    {
+        return $this->ciudadExpedicionRel;
+    }
+
+    /**
+     * @param mixed $ciudadExpedicionRel
+     */
+    public function setCiudadExpedicionRel($ciudadExpedicionRel): void
+    {
+        $this->ciudadExpedicionRel = $ciudadExpedicionRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRhTipoRel()
+    {
+        return $this->rhTipoRel;
+    }
+
+    /**
+     * @param mixed $rhTipoRel
+     */
+    public function setRhTipoRel($rhTipoRel): void
+    {
+        $this->rhTipoRel = $rhTipoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLibretaTipoRel()
+    {
+        return $this->libretaTipoRel;
+    }
+
+    /**
+     * @param mixed $libretaTipoRel
+     */
+    public function setLibretaTipoRel($libretaTipoRel): void
+    {
+        $this->libretaTipoRel = $libretaTipoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdentidadSexoRel()
+    {
+        return $this->identidadSexoRel;
+    }
+
+    /**
+     * @param mixed $identidadSexoRel
+     */
+    public function setIdentidadSexoRel($identidadSexoRel): void
+    {
+        $this->identidadSexoRel = $identidadSexoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCuentaBancoTipoRel()
+    {
+        return $this->cuentaBancoTipoRel;
+    }
+
+    /**
+     * @param mixed $cuentaBancoTipoRel
+     */
+    public function setCuentaBancoTipoRel($cuentaBancoTipoRel): void
+    {
+        $this->cuentaBancoTipoRel = $cuentaBancoTipoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBancoRel()
+    {
+        return $this->bancoRel;
+    }
+
+    /**
+     * @param mixed $bancoRel
+     */
+    public function setBancoRel($bancoRel): void
+    {
+        $this->bancoRel = $bancoRel;
+    }
 
 }
 

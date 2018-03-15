@@ -12,7 +12,7 @@ class IdentificacionTipo
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="codigo_identificacion_tipo_pk",type="integer")
      */
     private $codigoIdentificacionTipoPk;
 
@@ -24,7 +24,7 @@ class IdentificacionTipo
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="identificacionTipoRel")
      */
-    private $empleadoRel;
+    private $empleadoIdentificacionRel;
 
     /**
      * @return mixed
@@ -57,6 +57,23 @@ class IdentificacionTipo
     {
         $this->nombre = $nombre;
     }
-    
+
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoIdentificacionRel()
+    {
+        return $this->empleadoIdentificacionRel;
+    }
+
+    /**
+     * @param mixed $empleadoIdentificacionRel
+     */
+    public function setEmpleadoIdentificacionRel($empleadoIdentificacionRel): void
+    {
+        $this->empleadoIdentificacionRel = $empleadoIdentificacionRel;
+    }
+
+
 
 }
