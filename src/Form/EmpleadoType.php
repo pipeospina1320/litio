@@ -20,6 +20,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraint as Assert;
+
 
 class EmpleadoType extends AbstractType
 {
@@ -27,8 +29,7 @@ class EmpleadoType extends AbstractType
     {
         $builder
             ->add('numIdentificacion', TextType::class, array(
-                'attr' => array('class' => 'form-control',
-                    'place_holder' => 'numero identificacion')
+                'attr' => array('class' => 'form-control',)
             ))
 
 
@@ -55,16 +56,19 @@ class EmpleadoType extends AbstractType
                 ))
 
             ->add('nombre1', TextType::class, array(
-                'attr' => array('class' => 'form-control')
+                'attr' => array('class' => 'form-control'),
+                'required' => true
             ))
             ->add('nombre2', TextType::class, array(
-                'attr' => array('class' => 'form-control')
+                'attr' => array('class' => 'form-control'),
+                'required' => false
             ))
             ->add('apellido1', TextType::class, array(
                 'attr' => array('class' => 'form-control')
             ))
             ->add('apellido2', TextType::class, array(
-                'attr' => array('class' => 'form-control')
+                'attr' => array('class' => 'form-control'),
+                'required' => false
             ))
 //
             ->add('fechaExpedicion', DateType::class, array(
@@ -72,14 +76,14 @@ class EmpleadoType extends AbstractType
                 'format' => 'dd-MM-yyyy',
                 // prevents rendering it as type="date", to avoid HTML5 date pickers
                 'html5' => false,
-                'attr' => array( 'class' => 'form-control', 'placeholder' => "DD/MM/YYYY")
+                'attr' => array( 'class' =>  'form-control', 'placeholder' => "DD/MM/YYYY")
             ))
 
             ->add('fechaNacimiento', DateType::class, array(
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
                 'html5' => false,
-                'attr' => array('class' => 'form-control' , 'placeholder' => "DD/MM/YYYY")
+                'attr' => array('class' =>  'form-control' , 'placeholder' => "DD/MM/YYYY")
             ))
 
             ->add('ciudadExpedicionRel', EntityType::class ,array(
@@ -103,17 +107,20 @@ class EmpleadoType extends AbstractType
             ->add('libretaTipoRel' , EntityType::class , array(
                 'class' => LibretaTipo::class,
                 'attr' => array('class' => 'form-control'),
-                'choice_label' => 'nombre'
+                'choice_label' => 'nombre',
+                'required' => false
             ))
 
             ->add('numLibreta' , TextType::class, array(
-                'attr' => array('class' => 'form-control')
+                'attr' => array('class' => 'form-control'),
+                'required' => false
             ))
 
             ->add('identidadSexoRel' , EntityType::class ,array(
                 'class' => IdentidadSexo::class,
                 'attr' => array('class' => 'form-control'),
-                'choice_label' => 'nombre'
+                'choice_label' => 'nombre',
+                'required' => true
             ))
 
 //            ->add('$numeroContactoRel',EntityType::class,array(
@@ -127,27 +134,32 @@ class EmpleadoType extends AbstractType
 //            ))
 
             ->add('direccion' , TextType::class, array(
-                'attr' => array('class' => 'form-control')
+                'attr' => array('class' => 'form-control'),
+                'required' => true
             ))
 
             ->add('correo', TextType::class , array(
-                'attr' => array('class' => 'form-control')
+                'attr' => array('class' => 'form-control'),
+                'required' => false
             ))
 
             ->add('cuentaBancoTipoRel' ,EntityType::class ,array(
                 'class' => CuentaBancoTipo::class,
                 'attr' => array('class' => 'form-control'),
-                'choice_label' => 'nombre'
+                'choice_label' => 'nombre',
+                'required' => false
             ))
 
             ->add('numCuentaBanco' , TextType::class , array(
-                'attr' => array('class' => 'form-control')
+                'attr' => array('class' => 'form-control'),
+                'required' => false
             ))
 
             ->add('bancoRel' , EntityType::class, array(
                 'class' => Banco::class,
                 'attr' => array('class' => 'form-control'),
-                'choice_label' => 'nombre'
+                'choice_label' => 'nombre',
+                'required' => false
             ))
 
             ->add('Guardar', SubmitType::class, array(

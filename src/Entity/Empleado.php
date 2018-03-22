@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EmpleadoRepository")
@@ -33,6 +34,10 @@ class Empleado
 
     /**
      * @ORM\Column(name="num_identificacion", type="string", nullable=false , unique=true)
+     * @Assert\Type(
+     *     type="integer",
+     *     message="El valor ingresado {{ value }} no es valido {{ type }}.")
+     *
      */
     private $numIdentificacion;
 
