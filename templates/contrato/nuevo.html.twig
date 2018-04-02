@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nuevo Contrato{% endblock %}
+
+{% block content %}
+    <h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ path('empleado_lista') }}">Contrato</a>
+            </li>
+            <li class="breadcrumb-item active">Nuevo</li>
+        </ol>
+    </h3>
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Nuevo Contrato
+                {#<small>different form elements</small>#}
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                {#<li class="dropdown">#}
+                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i#}
+                {#class="fa fa-wrench"></i></a>#}
+                {#<ul class="dropdown-menu" role="menu">#}
+                {#<li><a href="#">Settings 1</a>#}
+                {#</li>#}
+                {#<li><a href="#">Settings 2</a>#}
+                {#</li>#}
+                {#</ul>#}
+                {#</li>#}
+                {#<li><a class="close-link"><i class="fa fa-close"></i></a>#}
+                {#</li>#}
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal form-label-left '}}) }}
+            <div class="container">
+                <span class="section">Información personal</span>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="tipoIdentificacion">Tipo de
+                        contrato:</label>
+                    <div class="item col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.contratoTipoRel,{'attr' : {'class':'form-control col-md-2 col-xs-12 required'}}) }}
+                        {#{{ form_errors(form.identificacionTipoRel) }}#}
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="numIdentificacion">Jornada
+                        laboral:</label>
+                    <div class="item col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.tiempoLaboradoTipoRel,{'attr' : {'class':'form-control col-md-2 col-xs-12 required'}}) }}
+                        {#{{ form_errors(form.numIdentificacion) }}#}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="expedicionFecha">Fecha
+                        Inicio contato:</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        <div class='input-group date' id='myDatepicker1'>
+                            {{ form_widget(form.fechaInicioContrato,{'attr' : {'class' : 'form-control col-md-2 col-xs-12','required' :'required'}}) }}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="expedicionFecha">Fecha
+                        Inicio contato:</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        <div class='input-group date' id='myDatepicker2'>
+                            {{ form_widget(form.fechaFinContrato,{'attr' : {'class' : 'form-control col-md-2 col-xs-12','required' :'required'}}) }}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="CiudadExpedicion">Salario:</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.vrSalario,{'attr' : {'class' : 'form-control col-md-2 col-xs-12'}}) }}
+                    </div>
+
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="apellido2">Auxilio transporte</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.auxilioTransporte,{'attr' : {'class' : ' col-md-2 col-xs-12'}}) }}
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="nombre1">Cargo:</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.cargoRel,{'attr' : {'class':'form-control col-md-2 col-xs-12 required'}}) }}
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="ciudadNacimiento">Tipo
+                        salario:</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.salarioTipoRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 required'}}) }}
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="apellido1">Grupo de Pago</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.grupoPagoRel,{'attr' : {'class' : 'autocomplete form-control col-md-2 col-xs-12'}}) }}
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="apellido1">Ciudad labora</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.ciudadLaboraRel,{'attr' : {'class' : 'autocomplete form-control col-md-2 col-xs-12'}}) }}
+                    </div>
+                </div>
+                <br>
+                <span class="section">Información seguridad social</span>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="bancoRel">Cotizante</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.ssTipoCotizanteRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="bancoRel">Subtipo Cotizante</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.ssSubtipoCotizanteRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="cuentaBancoTipoRel">Tipo
+                        pension</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.ssTipoPensionRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="numCuentaBanco">Entidad
+                        pension</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.entidadPensionRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="cuentaBancoTipoRel">Tipo
+                        salud</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.ssTipoSaludRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="numCuentaBanco">Entidad salud</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.entidadSaludRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="cuentaBancoTipoRel">Entidad
+                        Cesantias</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.entidadCesantiasRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                    <label class="control-label col-md-2 col-sm-12 col-xs-12" for="numCuentaBanco">Entidad caja</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.entidadCajaRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="cuentaBancoTipoRel">Clasificacion
+                        riesgo</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.ssClasificacionRiesgoRel,{'attr' : {'class' : 'form-control col-md-2 col-xs-12 autocomplete'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="ln_solid"></div>codigoContratoPk
+            <div class="form-group">
+                <div class="col-xs-12">
+                    {{ form_widget(form.Guardar) }}
+                    {% if arContrato.codigoContratoPk > 0 %}
+                        <a href="{{ path('empleado_detalle', {'codigoEmpleado': arEmpleado.codigoEmpleadoPk }) }}" class="btn btn-danger pull-right">Cancelar</a>
+                    {% else %}
+                        <a href="{{ path('empleado_lista') }}" class="btn btn-danger pull-right">Cancelar</a>
+                    {% endif %}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

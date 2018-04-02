@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empleados{% endblock %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('contrato_lista') }}">Contratos</a>
+        </li>
+        <li class="breadcrumb-item active">Lista</li>
+    </ol>
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Lista de Contratos
+                {#<small>different form elements</small>#}
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="container">
+                <div class="table-responsive">
+                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Num. Identificacion</th>
+                            <th>Nombre</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            {#<th></th>#}
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for contrato in arContrato %}
+                            <tr>
+                                <td>{{ contrato.codigoContratoPk }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    {#<a href="{{ path('empleado_detalle', { 'codigoEmpleado': contrato.codigoEmpleadoPk }) }}" class="btn btn-info btn-xs"><i class="fa fa-folder"></i> Ver </a>#}
+                                </td>
+                                <td>
+                                    {#<a href="{{ path('empleado_nuevo', { 'codigoEmpleado': contrato.codigoEmpleadoPk }) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editar </a>#}
+                                </td>
+                                {#<td>#}
+                                    {#<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</a>#}
+                                {#</td>#}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                </div>
+                <div class="col-xs-12">
+                    {#<a href="{{ path('empleado_nuevo',{'codigoEmpleado': 0}) }}" class="btn btn-primary pull-right">Nuevo</a>#}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

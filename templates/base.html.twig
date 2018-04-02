@@ -15,28 +15,34 @@
         <!-- NProgress -->
         <link href="{{ asset('plantilla/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
         <!-- iCheck -->
-        <link href="{{ asset('plantilla/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+        {#<link href="{{ asset('plantilla/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">#}
         <!-- bootstrap-progressbar -->
-        <link href="{{ asset('plantilla/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.css') }}"
-              rel="stylesheet">
+        {#<link href="{{ asset('plantilla/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.css') }}"#}
+        {#rel="stylesheet">#}
         <!-- bootstrap-datetimepicker -->
         <link href="{{ asset('plantilla/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}"
               rel="stylesheet">
+        <!-- jQuery custom content scroller -->
+        <link href="{{ asset('plantilla/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"
+              rel="stylesheet"/>
         <!-- bootstrap-daterangepicker -->
         <link href="{{ asset('plantilla/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
-        <!-- JQVMap -->
-        {#<link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>#}
         <!-- Custom Theme Style -->
         <link href="{{ asset('plantilla/build/css/custom.min.css') }}" rel="stylesheet">
+
         <!-- Datatables -->
         <link href="{{ asset('plantilla/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"
               rel="stylesheet">
-        <link href="{{ asset('plantilla/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
+        <link href="{{ asset('plantilla/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}"
               rel="stylesheet">
+        <link href="{{ asset('plantilla/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
+        {#rel="stylesheet">#}
         <link href="{{ asset('plantilla/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"
               rel="stylesheet">
         <link href="{{ asset('plantilla/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}"
-              rel="stylesheet">
+
+        <!-- select2 -->
+        <link href="{{ asset('general/complementos/select2/dist/css/select2.min.css') }}" rel="stylesheet"/>
     {% endblock %}
 </head>
 
@@ -45,11 +51,28 @@
     <div class="container body">
         <div class="main_container">
             {% set route = app.request.get('_route') %}
-            {% set parametros = app.request.attributes.get('_route_params') %}
+            {#{% set parametros = app.request.attributes.get('_route_params') %}#}
             {% include 'menu.html.twig' %}
             {% include 'barraNavegacion.html.twig' %}
             <!-- page content -->
             <div class="right_col" role="main">
+                {% for kflash_message in app.session.flashbag.get('waring') %}
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span>
+                        </button>
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+                {% for flash_message in app.session.flashbag.get('info') %}
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span>
+                        </button>
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+
                 {% block content %}
 
                 {% endblock %}
@@ -73,19 +96,19 @@
     <!-- Bootstrap -->
     <script src="{{ asset('plantilla/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- FastClick -->
-    <script src="{{ asset('plantilla/vendors/fastclick/lib/fastclick.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/fastclick/lib/fastclick.js') }}"></script>#}
     <!-- NProgress -->
-    <script src="{{ asset('plantilla/vendors/nprogress/nprogress.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/nprogress/nprogress.js') }}"></script>#}
     <!-- Chart.js -->
-    <script src="{{ asset('plantilla/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/Chart.js/dist/Chart.min.js') }}"></script>#}
     <!-- gauge.js -->
-    <script src="{{ asset('plantilla/vendors/gauge.js/dist/gauge.min.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/gauge.js/dist/gauge.min.js') }}"></script>#}
     <!-- bootstrap-progressbar -->
-    <script src="{{ asset('plantilla/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>#}
     <!-- iCheck -->
-    <script src="{{ asset('plantilla/vendors/iCheck/icheck.min.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/iCheck/icheck.min.js') }}"></script>#}
     <!-- Skycons -->
-    <script src="{{ asset('plantilla/vendors/skycons/skycons.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/skycons/skycons.js') }}"></script>#}
     <!-- Flot -->
     {#<script src="{{ asset('plantilla/vendors/Flot/jquery.flot.js') }}"></script>#}
     {#<script src="{{ asset('plantilla/vendors/Flot/jquery.flot.pie.js') }}"></script>#}
@@ -97,32 +120,31 @@
     {#<script src="{{ asset('plantilla/vendors/flot-spline/js/jquery.flot.spline.min.js') }}"></script>#}
     {#<script src="{{ asset('plantilla/vendors/flot.curvedlines/curvedLines.js') }}"></script>#}
 
-    <!-- JQVMap -->
-    {#<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>#}
-    {#<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>#}
-    {#<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>#}
-
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('plantilla/vendors/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('plantilla/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <!-- bootstrap-datetimepicker -->
     <script src="{{ asset('plantilla/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- DateJS -->
-    <script src="{{ asset('plantilla/vendors/DateJS/build/date.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/DateJS/build/date.js') }}"></script>#}
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('plantilla/build/js/custom.min.js') }}"></script>
 
-    <!-- -->
-
+    <!-- jQuery custom content scroller -->
+    <script src="{{ asset('plantilla/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('general/complementos/select2/dist/js/select2.min.js') }}"></script>
+    <!-- validator -->
+    <script src="{{ asset('plantilla/vendors/validator/validator.js') }}"></script>
     <!-- Datatables -->
     <script src="{{ asset('plantilla/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plantilla/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>#}
     <script src="{{ asset('plantilla/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('plantilla/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
     <script src="{{ asset('plantilla/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
@@ -131,8 +153,18 @@
     {#<script src="{{ asset('plantilla/vendors/pdfmake/build/vfs_fonts.js') }}"></script>#}
 
     <script>
-        $('#myDatepicker').datetimepicker({
+        $('#myDatepicker1').datetimepicker({
             format: 'DD/MM/YYYY'
+        });
+    </script>
+    <script>
+        $('#myDatepicker2').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.autocomplete').select2();
         });
     </script>
 {% endblock %}

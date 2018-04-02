@@ -1,0 +1,288 @@
+{% extends 'base.html.twig' %}
+{% block title %}Información Empleado{% endblock %}
+{% block content %}
+    <h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ path('empleado_lista') }}">Empleados</a>
+            </li>
+            <li class="breadcrumb-item active">Detalle</li>
+        </ol>
+    </h3>
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Perfil Empleado
+                {#<small>different form elements</small>#}
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                {#<li class="dropdown">#}
+                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i#}
+                {#class="fa fa-wrench"></i></a>#}
+                {#<ul class="dropdown-menu" role="menu">#}
+                {#<li><a href="#">Settings 1</a>#}
+                {#</li>#}
+                {#<li><a href="#">Settings 2</a>#}
+                {#</li>#}
+                {#</ul>#}
+                {#</li>#}
+                {#<li><a class="close-link"><i class="fa fa-close"></i></a>#}
+                {#</li>#}
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="container">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img">
+                            <div id="crop-avatar">
+                                <!-- Current avatar -->
+                                {% if arEmpleadoDetalle.rutaFoto == null %}
+                                    <img class="img-responsive avatar-view"
+                                         src="{{ asset('general/imagenes/user.png') }}"
+                                         alt="Avatar"
+                                         title="Change the avatar">
+                                {% else %}
+                                    <img class="img-responsive avatar-view" src="{{ arEmpleadoDetalle.rutaFoto }}"
+                                         alt="Avatar"
+                                         title="Change the avatar">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <h3>{{ arEmpleadoDetalle.nombre1 ~" "~ arEmpleadoDetalle.apellido1 }}</h3>
+                        <ul class="list-unstyled user_data">
+                            {#<li>#}
+                                {#<i class="fa fa-map-marker user-profile-icon"></i> {{ arEmpleadoDetalle.direccion }}#}
+                            {#</li>#}
+
+                            {#<li>#}
+                                {#<i class="fa fa-briefcase user-profile-icon"></i> {{ arEmpleadoDetalle.empleadoTipoRel.nombre }}#}
+                            {#</li>#}
+                        </ul>
+                        <div class="col-md-12">
+                            <a href="{{ path('empleado_nuevo', { 'codigoEmpleado': arEmpleadoDetalle.codigoEmpleadoPk }) }}"
+                               class="btn btn-success"><i class="fa fa-pencil"></i> Editar Perfil</a>
+                        </div>
+
+                        {#<div class="x_content">#}
+                        {#<div class="sidebar-widget">#}
+                        {#<h4>Profile Completion</h4>#}
+                        {#<canvas width="147" height="60" id="chart_gauge_01" class=""#}
+                        {#style="width: 150px; height: 80px;"></canvas>#}
+                        {#<div class="goal-wrapper">#}
+                        {#<span id="gauge-text" class="gauge-value pull-left">80</span>#}
+                        {#<span class="gauge-value pull-left">%</span>#}
+                        {#<span id="goal-text" class="goal-value pull-right">100%</span>#}
+                        {#</div>#}
+                        {#</div>#}
+                        {#</div>#}
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="profile_title">
+                            <div class="col-md-6">
+                                <h2>Información personal</h2>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- informacion Personal -->
+                        <div id="graph_bar" style="width:100%; height:280px;">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Id</label>
+                                        <p>{{ arEmpleadoDetalle.codigoEmpleadoPk }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Nombre completo</label>
+                                        <p>{{ arEmpleadoDetalle.nombreCompleto }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Tipo identificacion</label>
+                                        <p>{{ arEmpleadoDetalle.identificacionTipoRel.nombre }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Num identificacion</label>
+                                        <p>{{ arEmpleadoDetalle.numIdentificacion }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Fecha Expedicion</label>
+                                        <p>{{ arEmpleadoDetalle.fechaExpedicion | date("m/d/Y") }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Ciudad Expedicion</label>
+                                        <p>{{ arEmpleadoDetalle.ciudadExpedicionRel.nombre }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Rh</label>
+                                        <p>{{ arEmpleadoDetalle.rhTipoRel.nombre }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Direccion</label>
+                                        <p>{{ arEmpleadoDetalle.direccion }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Correo elemtronico</label>
+                                        <p>{{ arEmpleadoDetalle.correo }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Sexo</label>
+                                        <p>{{ arEmpleadoDetalle.identidadSexoRel.nombre }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Fecha Nacimiento</label>
+                                        <p>{{ arEmpleadoDetalle.fechaNacimiento | date("d/m/Y") }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tipoIdentificacion">Ciudad Nacimiento</label>
+                                        <p>{{ arEmpleadoDetalle.ciudadNacimientoRel.nombre }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            {#<div class="row">#}
+                            {#</div>#}
+                        </div>
+                        <!-- Fin Informacion personal -->
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Contratos</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"
+                                   aria-expanded="false">
+                                    otro
+                                </a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab"
+                                   aria-expanded="false">
+                                    otro
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1"
+                                 aria-labelledby="home-tab">
+                                <!-- start recent activity -->
+                                <table class="data table table-striped no-margin">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Numero Contrato</th>
+                                        <th>Tipo contrato</th>
+                                        <th>Grupo Pago</th>
+                                        <th>Salario</th>
+                                        <th>Inicio</th>
+                                        <th>Fin</th>
+                                        <th>Terminado</th>
+                                        <th>Liquidado</th>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for contratos in arContratos %}
+                                        <tr>
+                                            <td>{{ contratos.codigoContratoPk }}</td>
+                                            <td>{{ contratos.numeroContrato | number_format(0, '.') }}</td>
+                                            <td>{{ contratos.contratoTipoRel.nombre }}</td>
+                                            <td>{{ contratos.grupoPagoRel.nombre |default("") }}</td>
+                                            <td>{{ contratos.vrSalario | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.fechaInicioContrato | date("d/m/Y") }}</td>
+                                            <td>{{ contratos.fechaFinContrato | date("d/m/Y") }}</td>
+                                            <td>{{ contratos.estadoTerminado ? 'Si':'No' }}</td>
+                                            <td>{{ contratos.estadoLiquidado ? 'Si' : 'No' }}</td>
+                                            <td>
+                                                {#<a href="{{ path('empleado_detalle', { 'codigoEmpleado': empleado.codigoEmpleadoPk }) }}"#}
+                                                {#class="btn btn-info btn-xs"><i class="fa fa-folder"></i> Ver </a>#}
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('contrato_nuevo', { 'codigoEmpleado': arEmpleadoDetalle.codigoEmpleadoPk ,'codigoContrato': contratos.codigoContratoPk }) }}"
+                                                   class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editar
+                                                </a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <!-- end recent activity -->
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <a href="{{ path('contrato_nuevo',{'codigoEmpleado': arEmpleadoDetalle.codigoEmpleadoPk  , 'codigoContrato' : 0 }) }}"
+                                           class="btn btn-primary pull-right">Nuevo Contrato</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                <!-- start user projects -->
+                                <table class="data table table-striped no-margin">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for contratos in arContratos %}
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <!-- end user projects -->
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {#<div class="ln_solid"></div>#}
+            {#<div class="form-group">#}
+            {#<div class="col-xs-12">#}
+            {#<a class="btn btn-success pull-right"><i class="fa fa-pencil"></i> Editar Perfil</a>#}
+            {#</div>#}
+            {#</div>#}
+        </div>
+    </div>
+{% endblock %}
