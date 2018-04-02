@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EmpleadoRepository")
+ * @UniqueEntity("numIdentificacion",
+ *  message="Ya existe un empleado con este número de cedula.")
  */
 class Empleado
 {
@@ -33,11 +36,10 @@ class Empleado
     private $codigoIdentificacionTipoFk;
 
     /**
-     * @ORM\Column(name="num_identificacion", type="string", nullable=false , unique=true)
-     * @Assert\Type(
-     *     type="integer",
-     *     message="El valor ingresado {{ value }} no es valido {{ type }}.")
-     *
+     * @ORM\Column(name="num_identificacion", type="integer" , length=20, nullable=false , unique=true)
+     * @Assert\Length(
+     *     max=20,
+     *     maxMessage="Maximo {{ limit }} caracteres")
      */
     private $numIdentificacion;
 
@@ -70,6 +72,11 @@ class Empleado
      * @ORM\Column(name="apellido2" , type="string", nullable=true)
      */
     private $apellido2;
+
+    /**
+     * @ORM\Column(name="nombre_completo" , type="string", nullable=true)
+     */
+    private $nombreCompleto;
 
     /**
      * @ORM\Column(name="codigo_estado_civil_fk", type="integer" , nullable=true)
@@ -142,9 +149,9 @@ class Empleado
     private $codigoUltimoContratoFk;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Contrato" , mappedBy="empleadoContratoRel")
+     * @ORM\OneToMany(targetEntity="App\Entity\Contrato" , mappedBy="contratoEmpleadoRel")
      */
-    protected $contratosRel;
+    private $contratoContratoRel;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\EmpleadoNumerosContacto" , mappedBy="empleadoNumeroContactoRel")
@@ -206,9 +213,8 @@ class Empleado
     private $bancoRel;
 
 
-
-
-    public function __construct() {
+    public function __construct()
+    {
         $this->empleadoTipoRel = new \Doctrine\Common\Collections\ArrayCollection();
 
     }
@@ -387,6 +393,22 @@ class Empleado
     public function setApellido2($apellido2): void
     {
         $this->apellido2 = $apellido2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombreCompleto()
+    {
+        return $this->nombreCompleto;
+    }
+
+    /**
+     * @param mixed $nombreCompleto
+     */
+    public function setNombreCompleto($nombreCompleto): void
+    {
+        $this->nombreCompleto = $nombreCompleto;
     }
 
     /**
@@ -616,17 +638,17 @@ class Empleado
     /**
      * @return mixed
      */
-    public function getContratosRel()
+    public function getContratoContratoRel()
     {
-        return $this->contratosRel;
+        return $this->contratoContratoRel;
     }
 
     /**
-     * @param mixed $contratosRel
+     * @param mixed $contratoContratoRel
      */
-    public function setContratosRel($contratosRel): void
+    public function setContratoContratoRel($contratoContratoRel): void
     {
-        $this->contratosRel = $contratosRel;
+        $this->contratoContratoRel = $contratoContratoRel;
     }
 
     /**
@@ -788,6 +810,7 @@ class Empleado
     {
         $this->bancoRel = $bancoRel;
     }
+
 
 }
 

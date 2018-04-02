@@ -20,6 +20,11 @@ class CuentaBancoTipo
      */
     private $nombre;
 
+   /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Empleado", mappedBy="cuentaBancoTipoRel")
+    */
+   private $empleadoCuentaBancoTipoRel;
+
     /**
      * @return mixed
      */
@@ -51,5 +56,22 @@ class CuentaBancoTipo
     {
         $this->nombre = $nombre;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoCuentaBancoTipoRel()
+    {
+        return $this->empleadoCuentaBancoTipoRel;
+    }
+
+    /**
+     * @param mixed $empleadoCuentaBancoTipoRel
+     */
+    public function setEmpleadoCuentaBancoTipoRel($empleadoCuentaBancoTipoRel): void
+    {
+        $this->empleadoCuentaBancoTipoRel = $empleadoCuentaBancoTipoRel;
+    }
+
 
 }

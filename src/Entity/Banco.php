@@ -22,6 +22,11 @@ class Banco
     private $nombre;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="bancoRel")
+     */
+    private  $empleadoBancoRel;
+
+    /**
      * @return mixed
      */
     public function getCodigoBancoPk()
@@ -52,5 +57,22 @@ class Banco
     {
         $this->nombre = $nombre;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoBancoRel()
+    {
+        return $this->empleadoBancoRel;
+    }
+
+    /**
+     * @param mixed $empleadoBancoRel
+     */
+    public function setEmpleadoBancoRel($empleadoBancoRel): void
+    {
+        $this->empleadoBancoRel = $empleadoBancoRel;
+    }
+
 
 }

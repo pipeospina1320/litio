@@ -38,6 +38,26 @@ class Ciudad
     private $departamentoRel;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="ciudadNacimientoRel")
+     */
+    private $empleadoCiudadNacimientoRel;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="ciudadExpedicionRel")
+     */
+    private $empleadoCiudadExpedicionRel;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contrato" , mappedBy="ciudadContratoRel")
+     */
+    private $contratoCiudadContratoRel;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contrato" , mappedBy="ciudadLaboraRel")
+     */
+    private $contratoCiudadLaboraRel;
+
+    /**
      * @return mixed
      */
     public function getCodigoCiudadPk()
@@ -115,6 +135,70 @@ class Ciudad
     public function setDepartamentoRel($departamentoRel): void
     {
         $this->departamentoRel = $departamentoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoCiudadNacimientoRel()
+    {
+        return $this->empleadoCiudadNacimientoRel;
+    }
+
+    /**
+     * @param mixed $empleadoCiudadNacimientoRel
+     */
+    public function setEmpleadoCiudadNacimientoRel($empleadoCiudadNacimientoRel): void
+    {
+        $this->empleadoCiudadNacimientoRel = $empleadoCiudadNacimientoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoCiudadExpedicionRel()
+    {
+        return $this->empleadoCiudadExpedicionRel;
+    }
+
+    /**
+     * @param mixed $empleadoCiudadExpedicionRel
+     */
+    public function setEmpleadoCiudadExpedicionRel($empleadoCiudadExpedicionRel): void
+    {
+        $this->empleadoCiudadExpedicionRel = $empleadoCiudadExpedicionRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContratoCiudadContratoRel()
+    {
+        return $this->contratoCiudadContratoRel;
+    }
+
+    /**
+     * @param mixed $contratoCiudadContratoRel
+     */
+    public function setContratoCiudadContratoRel($contratoCiudadContratoRel): void
+    {
+        $this->contratoCiudadContratoRel = $contratoCiudadContratoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContratoCiudadLaboraRel()
+    {
+        return $this->contratoCiudadLaboraRel;
+    }
+
+    /**
+     * @param mixed $contratoCiudadLaboraRel
+     */
+    public function setContratoCiudadLaboraRel($contratoCiudadLaboraRel): void
+    {
+        $this->contratoCiudadLaboraRel = $contratoCiudadLaboraRel;
     }
 
 

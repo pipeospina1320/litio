@@ -33,6 +33,11 @@ class Pais
     private $departamentoPaisRel;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="paisEmpleadoRel")
+     */
+    private $empleadoPaisRel;
+
+    /**
      * @return mixed
      */
     public function getCodigoPaisPk()

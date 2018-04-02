@@ -21,6 +21,11 @@ class RhTipo
     private $nombre;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Empleado" ,mappedBy="rhTipoRel")
+     */
+    private $empleadoRhTipoRel;
+
+    /**
      * @return mixed
      */
     public function getCodigoRhTipoPk()
@@ -52,6 +57,20 @@ class RhTipo
         $this->nombre = $nombre;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoRhTipoRel()
+    {
+        return $this->empleadoRhTipoRel;
+    }
 
+    /**
+     * @param mixed $empleadoRhTipoRel
+     */
+    public function setEmpleadoRhTipoRel($empleadoRhTipoRel): void
+    {
+        $this->empleadoRhTipoRel = $empleadoRhTipoRel;
+    }
 
 }

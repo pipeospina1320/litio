@@ -20,6 +20,12 @@ class IdentidadSexo
     */
    private $nombre;
 
+ /**
+  * @ORM\OneToMany(targetEntity="App\Entity\Empleado", mappedBy="identidadSexoRel")
+  *
+  */
+ private $empleadoIdentidadSexoRel;
+
     /**
      * @return mixed
      */
@@ -50,6 +56,22 @@ class IdentidadSexo
     public function setNombre($nombre): void
     {
         $this->nombre = $nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoIdentidadSexoRel()
+    {
+        return $this->empleadoIdentidadSexoRel;
+    }
+
+    /**
+     * @param mixed $empleadoIdentidadSexoRel
+     */
+    public function setEmpleadoIdentidadSexoRel($empleadoIdentidadSexoRel): void
+    {
+        $this->empleadoIdentidadSexoRel = $empleadoIdentidadSexoRel;
     }
 
 

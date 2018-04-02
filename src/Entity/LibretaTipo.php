@@ -20,6 +20,12 @@ class LibretaTipo
      */
     private $nombre;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Empleado" , mappedBy="libretaTipoRel")
+     */
+    private $empleadoLibretaTipoRel;
+
     /**
      * @return mixed
      */
@@ -52,5 +58,20 @@ class LibretaTipo
         $this->nombre = $nombre;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEmpleadoLibretaTipoRel()
+    {
+        return $this->empleadoLibretaTipoRel;
+    }
+
+    /**
+     * @param mixed $empleadoLibretaTipoRel
+     */
+    public function setEmpleadoLibretaTipoRel($empleadoLibretaTipoRel): void
+    {
+        $this->empleadoLibretaTipoRel = $empleadoLibretaTipoRel;
+    }
 
 }
