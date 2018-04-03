@@ -60,14 +60,14 @@ class EmpleadoType extends AbstractType
             ))
             ->add('fechaExpedicion', DateType::class, array(
                 'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy',
+                'format' => 'dd/MM/yyyy',
                 // prevents rendering it as type="date", to avoid HTML5 date pickers
                 'html5' => false,
                 'attr' => array('class' => 'form-control', 'placeholder' => "DD/MM/YYYY")
             ))
             ->add('fechaNacimiento', DateType::class, array(
                 'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy',
+                'format' => 'dd/MM/yyyy',
                 'html5' => false,
                 'attr' => array('class' => 'form-control', 'placeholder' => "DD/MM/YYYY")
             ))

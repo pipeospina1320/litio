@@ -45,6 +45,8 @@ class EmpleadoController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $arEmpleado = $form->getData();
+//            $arEmpleado->setFechaExpedicion(date_create($arEmpleado->getFechaExpedicion()));
+//            $arEmpleado->setFechaNacimiento(date_create($arEmpleado->getFechaNacimiento()));
             $arEmpleado->setNombreCompleto($arEmpleado->getNombre1() . " " . $arEmpleado->getNombre2() . " " . $arEmpleado->getApellido1() . " " . $arEmpleado->getApellido2());
 
             $em->persist($arEmpleado);
