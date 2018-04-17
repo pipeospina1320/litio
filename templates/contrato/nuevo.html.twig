@@ -170,15 +170,15 @@
                     </div>
                 </div>
             </div>
-            <div class="ln_solid"></div>codigoContratoPk
+            <div class="ln_solid"></div>
             <div class="form-group">
                 <div class="col-xs-12">
                     {{ form_widget(form.Guardar) }}
-                    {% if arContrato.codigoContratoPk > 0 %}
+                    {#{% if arContrato.codigoContratoPk > 0 %}#}
                         <a href="{{ path('empleado_detalle', {'codigoEmpleado': arEmpleado.codigoEmpleadoPk }) }}" class="btn btn-danger pull-right">Cancelar</a>
-                    {% else %}
-                        <a href="{{ path('empleado_lista') }}" class="btn btn-danger pull-right">Cancelar</a>
-                    {% endif %}
+                    {#{% elseif arEmpleado.codigoEmpleadoPk > 0 %}#}
+                        {#<a href="{{ path('empleado_detalle', {'codigoEmpleado': arEmpleado.codigoEmpleadoPk }) }}" class="btn btn-danger pull-right">Cancelar</a>#}
+                    {#{% endif %}#}
                 </div>
             </div>
             {{ form_end(form) }}

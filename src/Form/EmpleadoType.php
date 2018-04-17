@@ -148,7 +148,7 @@ class EmpleadoType extends AbstractType
     {
         $resolver->setDefaults([
             // uncomment if you want to bind to a class
-            'data_class' => Empleado::class,
+//            'data_class' => Empleado::class,
         ]);
     }
 }

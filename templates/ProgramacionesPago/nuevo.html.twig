@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nuevo Programación pago{% endblock %}
+
+{% block content %}
+    <h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ path('programacion_pago_lista') }}">Programación pago</a>
+            </li>
+            <li class="breadcrumb-item active">{{ arProgramacionPago.codigoProgramacionPagoPk > 0 ? 'Editar' : 'Nuevo' }}</li>
+        </ol>
+    </h3>
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>
+                {{ arProgramacionPago.codigoProgramacionPagoPk > 0 ? 'Editar Programación pago' : 'Nueva Programación pago' }}
+
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal form-label-left '}}) }}
+            <div class="container">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="numIdentificacion">Grupo de
+                        pago</label>
+                    <div class="item col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.grupoPagoRel,{'attr' : {'class':'form-control col-md-2 col-xs-12','required' :'required' }}) }}
+                        {#{{ form_errors(form.numIdentificacion) }}#}
+                    </div>
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="numIdentificacion">Tipo de
+                        pago</label>
+                    <div class="item col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.pagoTipoRel,{'attr' : {'class':'form-control col-md-2 col-xs-12','required' :'required' }}) }}
+                        {#{{ form_errors(form.numIdentificacion) }}#}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="fechaDesde">Fecha
+                        Desde</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        <div class='input-group date' id='myDatepicker1'>
+                            {{ form_widget(form.fechaDesde,{'attr' : {'class' : 'form-control col-md-2 col-xs-12'}}) }}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="fechaHasta">Fecha
+                        Hasta</label>
+                    <div class="col-md-2 col-sm-12 col-xs-12">
+                        <div class='input-group date' id='myDatepicker2'>
+                            {{ form_widget(form.fechaHasta,{'attr' : {'class' : 'form-control col-md-2 col-xs-12'}}) }}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12" for="numIdentificacion">Días:</label>
+                    <div class="item col-md-2 col-sm-12 col-xs-12">
+                        {{ form_widget(form.dias,{'attr' : {'class':'form-control col-md-2 col-xs-12','required' :'required' }}) }}
+                    </div>
+
+                </div>
+                <br>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    {{ form_widget(form.Guardar) }}
+                    <a href="{{ path('empleado_lista') }}" class="btn btn-danger pull-right">Cancelar</a>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

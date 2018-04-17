@@ -13,16 +13,28 @@ class EmpleadoRepository extends ServiceEntityRepository
         parent::__construct($registry, Empleado::class);
     }
 
-    /*
+
     public function findBySomething($value)
     {
-        return $this->createQueryBuilder('e')
-            ->where('e.something = :value')->setParameter('value', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('e,it,em,cn,ce,rh,lt,s,cb,c,b')
+            ->from('App:Empleado', 'e')
+            ->leftJoin('e.identificacionTipoRel', 'it')
+            ->leftJoin('e.empleadoTipoRel', 'em')
+            ->leftJoin('e.ciudadNacimientoRel', 'cn')
+            ->leftJoin('e.ciudadExpedicionRel', 'ce')
+            ->leftJoin('e.rhTipoRel', 'rh')
+            ->leftJoin('e.libretaTipoRel','lt')
+            ->leftJoin('e.identidadSexoRel', 's')
+            ->leftJoin('e.cuentaBancoTipoRel', 'cb')
+            ->leftJoin('e.contratoContratoRel', 'c')
+            ->leftJoin('e.bancoRel', 'b')
+
+            ->where("e.codigoEmpleadoPk = {$value}");
+
+        $dql = $qb->getQuery();
+        return $dql->getSingleResult();
     }
-    */
+
 }

@@ -149,6 +149,11 @@ class Empleado
     private $codigoUltimoContratoFk;
 
     /**
+     * @ORM\Column(name="estado_contrato_activo" , type="boolean" , nullable=true)
+     */
+    private $estadoContratoActivo;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Contrato" , mappedBy="contratoEmpleadoRel")
      */
     private $contratoContratoRel;
@@ -157,6 +162,16 @@ class Empleado
      * @ORM\OneToMany(targetEntity="App\Entity\EmpleadoNumerosContacto" , mappedBy="empleadoNumeroContactoRel")
      */
     protected $numeroContactoRel;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Pago", mappedBy="empleadoRel")
+     */
+    protected $pagosEmpleadoRel;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProgramacionPagoResumen" , mappedBy="empleadoRel")
+     */
+    protected $programacionesPagosDetallesEmpleadoRel;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\EmpleadoTipo", inversedBy="empleadoEmpleadoTipoRel")
@@ -810,6 +825,56 @@ class Empleado
     {
         $this->bancoRel = $bancoRel;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEstadoContratoActivo()
+    {
+        return $this->estadoContratoActivo;
+    }
+
+    /**
+     * @param mixed $estadoContratoActivo
+     */
+    public function setEstadoContratoActivo($estadoContratoActivo): void
+    {
+        $this->estadoContratoActivo = $estadoContratoActivo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPagosEmpleadoRel()
+    {
+        return $this->pagosEmpleadoRel;
+    }
+
+    /**
+     * @param mixed $pagosEmpleadoRel
+     */
+    public function setPagosEmpleadoRel($pagosEmpleadoRel): void
+    {
+        $this->pagosEmpleadoRel = $pagosEmpleadoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProgramacionesPagosDetallesEmpleadoRel()
+    {
+        return $this->programacionesPagosDetallesEmpleadoRel;
+    }
+
+    /**
+     * @param mixed $programacionesPagosDetallesEmpleadoRel
+     */
+    public function setProgramacionesPagosDetallesEmpleadoRel($programacionesPagosDetallesEmpleadoRel): void
+    {
+        $this->programacionesPagosDetallesEmpleadoRel = $programacionesPagosDetallesEmpleadoRel;
+    }
+
+
 
 
 }

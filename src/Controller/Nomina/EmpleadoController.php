@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Nomina;
 
 use App\Entity\Empleado;
 use App\Form\EmpleadoType;
@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilder;
 class EmpleadoController extends Controller
 {
     /**
-     * @Route("empleado/", name="empleado_lista")
+     * @Route("/empleado/", name="empleado_lista")
      */
     public function lista(Request $request)
     {
@@ -29,7 +29,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * @Route("empleado/nuevo/{codigoEmpleado}" , name="empleado_nuevo")
+     * @Route("/empleado/nuevo/{codigoEmpleado}" , name="empleado_nuevo")
      */
     public function nuevoEmpleado(Request $request, $codigoEmpleado)
     {
@@ -39,7 +39,8 @@ class EmpleadoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $arEmpleado = new Empleado();
         if ($codigoEmpleado != 0) {
-            $arEmpleado = $em->getRepository('App:Empleado')->find($codigoEmpleado);
+            $arEmpleado = $em->getRepository('App:Empleado')->findBySomething($codigoEmpleado);
+//            $arEmpleado = $em->getRepository('App:Empleado')->find($codigoEmpleado);
         }
         $form = $this->createForm(EmpleadoType::class, $arEmpleado);
         $form->handleRequest($request);
@@ -47,7 +48,7 @@ class EmpleadoController extends Controller
             $arEmpleado = $form->getData();
 //            $arEmpleado->setFechaExpedicion(date_create($arEmpleado->getFechaExpedicion()));
 //            $arEmpleado->setFechaNacimiento(date_create($arEmpleado->getFechaNacimiento()));
-            $arEmpleado->setNombreCompleto($arEmpleado->getNombre1() . " " . $arEmpleado->getNombre2() . " " . $arEmpleado->getApellido1() . " " . $arEmpleado->getApellido2());
+            $arEmpleado->setNombreCompleto(strtoupper($arEmpleado->getNombre1() . " " . $arEmpleado->getNombre2() . " " . $arEmpleado->getApellido1() . " " . $arEmpleado->getApellido2()));
 
             $em->persist($arEmpleado);
             $em->flush();
@@ -66,7 +67,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * @Route("empleado/detalle/{codigoEmpleado}" , name="empleado_detalle")
+     * @Route("/empleado/detalle/{codigoEmpleado}" , name="empleado_detalle")
      */
     public function detalleEmpleado(Request $request, $codigoEmpleado)
     {

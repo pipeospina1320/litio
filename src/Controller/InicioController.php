@@ -18,7 +18,7 @@ class InicioController extends Controller
     /**
      * @Route("/" , name="inicio")
      */
-    public function number()
+    public function inicio()
     {
         return $this->render('Inicio/index.html.twig');
     }

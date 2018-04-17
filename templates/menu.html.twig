@@ -25,11 +25,11 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-home"></i> Nomina <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a>Movimientos<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li class="sub_menu"><a href="index.html">Nomina</a></li>
+                    <li {% if route starts with 'programacion' %}class="active"{% else %}{% endif %}><a><i class="fa fa-home"></i> Nomina <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu"{% if route starts with 'programacion'%} style="display: block;"{% endif %}>
+                            <li {% if route starts with 'programacion' %}class="active"{% else %}{% endif %}><a>Movimientos<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu"{% if route starts with 'programacion'%} style="display: block;"{% endif %}>
+                                    <li class="{% if route starts with 'programacion' %}current-page{% endif %}"><a href="{{ path('programacion_pago_lista') }}">Programacion pago</a></li>
                                     <li><a href="index2.html">Pagos</a></li>
                                     <li><a href="index3.html">Egresos</a></li>
                                     <li><a href="index3.html">Liquidaciones</a></li>
@@ -46,8 +46,8 @@
                             {#</li>#}
                         </ul>
                     </li>
-                    <li {% if route starts with 'empleado' or route starts with 'contrato' %}class="active"{% else %}{% endif %}><a><i class="fa fa-edit"></i> Empleados <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu"{% if route starts with 'empleado' or route starts with 'contrato' %} style="display: block;"{% endif %}>
+                    <li {% if route starts with ("empleado" or "contrato") %}class="active"{% else %}{% endif %}><a><i class="fa fa-edit"></i> Empleados <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu"{% if route starts with ("empleado" or "contrato") %} style="display: block;"{% endif %}>
                             <li class="{% if route starts with 'empleado' %}current-page{% endif %}"><a href="{{ path('empleado_lista') }}">Empleados</a></li>
                             <li class="{% if route starts with 'contrato' %}current-page{% endif %}"><a href="{{ path('contrato_lista') }}">Contratos</a></li>
                         </ul>

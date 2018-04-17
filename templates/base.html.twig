@@ -13,7 +13,7 @@
         <!-- Font Awesome -->
         <link href="{{ asset('plantilla/docs/fonts/css/font-awesome.min.css') }}" rel="stylesheet">
         <!-- NProgress -->
-        <link href="{{ asset('plantilla/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+        {#<link href="{{ asset('plantilla/vendors/nprogress/nprogress.css') }}" rel="stylesheet">#}
         <!-- iCheck -->
         {#<link href="{{ asset('plantilla/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">#}
         <!-- bootstrap-progressbar -->
@@ -36,10 +36,11 @@
         <link href="{{ asset('plantilla/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}"
               rel="stylesheet">
         <link href="{{ asset('plantilla/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"
-        {#rel="stylesheet">#}
+              rel="stylesheet">
         <link href="{{ asset('plantilla/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"
               rel="stylesheet">
         <link href="{{ asset('plantilla/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}"
+              rel="stylesheet">
 
         <!-- select2 -->
         <link href="{{ asset('general/complementos/select2/dist/css/select2.min.css') }}" rel="stylesheet"/>
@@ -56,23 +57,24 @@
             {% include 'barraNavegacion.html.twig' %}
             <!-- page content -->
             <div class="right_col" role="main">
-                {% for kflash_message in app.session.flashbag.get('waring') %}
-                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                    aria-hidden="true">×</span>
-                        </button>
-                        {{ flash_message }}
-                    </div>
-                {% endfor %}
-                {% for flash_message in app.session.flashbag.get('info') %}
-                    <div class="alert alert-info alert-dismissible fade in" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                    aria-hidden="true">×</span>
-                        </button>
-                        {{ flash_message }}
-                    </div>
-                {% endfor %}
-
+                <h2>{% for flash_message in app.session.flashbag.get('warning') %}
+                        <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">×</span>
+                            </button>
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                </h2>
+                <h2>{% for flash_message in app.session.flashbag.get('info') %}
+                        <div class="alert alert-info alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">×</span>
+                            </button>
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                </h2>
                 {% block content %}
 
                 {% endblock %}
@@ -145,9 +147,9 @@
     {#<script src="{{ asset('plantilla/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>#}
     {#<script src="{{ asset('plantilla/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>#}
     {#<script src="{{ asset('plantilla/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>#}
-    <script src="{{ asset('plantilla/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
-    <script src="{{ asset('plantilla/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>#}
+    {#<script src="{{ asset('plantilla/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>#}
     {#<script src="{{ asset('plantilla/vendors/jszip/dist/jszip.min.js') }}"></script>#}
     {#<script src="{{ asset('plantilla/vendors/pdfmake/build/pdfmake.min.js') }}"></script>#}
     {#<script src="{{ asset('plantilla/vendors/pdfmake/build/vfs_fonts.js') }}"></script>#}

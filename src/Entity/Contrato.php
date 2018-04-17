@@ -192,6 +192,17 @@ class Contrato
     private $estadoLiquidado;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Pago", mappedBy="contratoRel")
+     */
+    protected $pagosContratoRel;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProgramacionPagoResumen", mappedBy="contratoRel")
+     */
+    protected $programacionesPagosDetallesContratoRel;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Empleado", inversedBy="contratoContratoRel")
      * @ORM\JoinColumn(name="codigo_empleado_fk", referencedColumnName="codigo_empleado_pk")
      */
@@ -1161,6 +1172,38 @@ class Contrato
     public function setMotivoTerminacionRel($motivoTerminacionRel): void
     {
         $this->motivoTerminacionRel = $motivoTerminacionRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPagosContratoRel()
+    {
+        return $this->pagosContratoRel;
+    }
+
+    /**
+     * @param mixed $pagosContratoRel
+     */
+    public function setPagosContratoRel($pagosContratoRel): void
+    {
+        $this->pagosContratoRel = $pagosContratoRel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProgramacionesPagosDetallesContratoRel()
+    {
+        return $this->programacionesPagosDetallesContratoRel;
+    }
+
+    /**
+     * @param mixed $programacionesPagosDetallesContratoRel
+     */
+    public function setProgramacionesPagosDetallesContratoRel($programacionesPagosDetallesContratoRel): void
+    {
+        $this->programacionesPagosDetallesContratoRel = $programacionesPagosDetallesContratoRel;
     }
 
 
