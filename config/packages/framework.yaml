@@ -7,13 +7,11 @@ framework:
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
 
-    validation: { enabled: true }
-
     session:
         handler_id: ~
 
-    #esi: true
-    #fragments: true
+    esi: true
+    fragments: true
     php_errors:
         log: true
 
@@ -32,3 +30,5 @@ framework:
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
 
+    ide: ~
+    validation: { enable_annotations: true }
