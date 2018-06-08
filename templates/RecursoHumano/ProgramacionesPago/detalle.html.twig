@@ -1,0 +1,213 @@
+{% extends 'base.html.twig' %}
+{% block title %}Programación pago detalle{% endblock %}
+{% block content %}
+    <h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ path('programacion_pago_lista') }}">Programación pago detalle</a>
+            </li>
+            <li class="breadcrumb-item active">Detalle</li>
+        </ol>
+    </h3>
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Perfil Empleado
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="container">
+                {{ form_start(form) }}
+                <div class="col-md-12 col-sm-3 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Id</label>
+                                <p>{{ arProgramacion.codigoProgramacionPagoPk }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Nombre</label>
+                                <p>{{ arProgramacion.nombre }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Fecha desde</label>
+                                <p>{{ arProgramacion.fechaDesde | date("d/m/Y") }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Fecha hasta</label>
+                                <p>{{ arProgramacion.fechaHasta | date("d/m/Y") }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Id</label>
+                                <p>{{ arProgramacion.codigoProgramacionPagoPk }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Nombre</label>
+                                <p>{{ arProgramacion.nombre }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Fecha desde</label>
+                                <p>{{ arProgramacion.fechaDesde | date("d/m/Y") }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Fecha hasta</label>
+                                <p>{{ arProgramacion.fechaHasta | date("d/m/Y") }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Registros</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab"
+                                   aria-expanded="false">otro</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab"
+                                   aria-expanded="false">otro</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1"
+                                 aria-labelledby="home-tab">
+                                <!-- start recent activity -->
+                                <table class="data table table-striped no-margin">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Identificacion</th>
+                                        <th>Empleado</th>
+                                        <th>Grupo Pago</th>
+                                        <th>Días</th>
+                                        <th>Salario</th>
+                                        <th>Devengado</th>
+                                        <th>Deducciones</th>
+                                        <th>Neto</th>
+                                        <th>H</th>
+                                        <th>HDS</th>
+                                        <th>HD</th>
+                                        <th>HN</th>
+                                        <th>HF</th>
+                                        <th>HFN</th>
+                                        <th>HED</th>
+                                        <th>HEN</th>
+                                        <th>HEFD</th>
+                                        <th>HEFN</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for contratos in arProgramacionResumen %}
+                                        <tr>
+                                            <td>{{ contratos.codigoProgramacionPagoResumenPk }}</td>
+                                            <td>{{ contratos.empleadoRel.numIdentificacion }}</td>
+                                            <td>{{ contratos.empleadoRel.nombreCompleto }}</td>
+                                            <td>{{ contratos.contratoRel.grupoPagoRel.nombre |default("") }}</td>
+                                            <td>{{ contratos.dias | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.salarioBasico }}</td>
+                                            <td>{{ contratos.vrDevengado | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.vrDeducciones | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.vrNetoPagar | number_format(0,'.',',') }}</td>
+                                            <td></td>
+                                            <td>{{ contratos.horasDescanso | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasDiurnas | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasNocturnas | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasFestivasDiurnas | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasFestivasNocturnas | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasExtrasOrdinariasDiurnas | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasExtrasOrdinariasNocturnas | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasExtrasFestivasDiurnas | number_format(0,'.',',') }}</td>
+                                            <td>{{ contratos.horasExtrasFestivasNocturnas | number_format(0,'.',',') }}</td>
+
+                                            <td>
+                                                {#<a href="{{ path('empleado_detalle', { 'codigoEmpleado': empleado.codigoEmpleadoPk }) }}"#}
+                                                {#class="btn btn-info btn-xs"><i class="fa fa-folder"></i> Ver </a>#}
+                                            </td>
+                                            <td>
+                                                {#<a href="{{ path('contrato_nuevo', { 'codigoEmpleado': arEmpleadoDetalle.codigoEmpleadoPk ,'codigoContrato': contratos.codigoContratoPk }) }}"#}
+                                                {#class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editar#}
+                                                {#</a>#}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <!-- end recent activity -->
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        {#<a href="{{ path('contrato_nuevo',{'codigoEmpleado': arEmpleadoDetalle.codigoEmpleadoPk  , 'codigoContrato' : 0 }) }}"#}
+                                        {#class="btn btn-primary pull-right">Nuevo Contrato</a>#}
+                                        {#</div>#}
+                                    </div>
+                                </div>
+                                {{ form_widget(form.btnCargarContratos) }}
+                            </div>
+
+
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                <!-- start user projects -->
+                                <table class="data table table-striped no-margin">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {#{% for contratos in arContratos %}#}
+                                    {#<tr>#}
+                                    {#<td></td>#}
+                                    {#<td></td>#}
+                                    {#<td></td>#}
+                                    {#<td></td>#}
+                                    {#<td></td>#}
+                                    {#</tr>#}
+                                    {#{% endfor %}#}
+                                    </tbody>
+                                </table>
+                                <!-- end user projects -->
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
